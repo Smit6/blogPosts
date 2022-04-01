@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
 
 import { Context as BlogContext } from '../context/BlogContext';
@@ -8,11 +8,22 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 const IndexScreen = ({ navigation }) => {
-    const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
+    const { state, deleteBlogPost, getBlogPosts } = useContext(BlogContext);
+
+    useEffect(() => {
+        getBlogPosts();
+
+        const listener = navigation.addListener('didFocus', () => {
+            getBlogPosts();
+        });
+
+        return () => {
+            listener.remove();
+        };
+    }, []);
 
     return (
         <View>
-            <Button title='Add post' onPress={addBlogPost} />
             <FlatList
                 data={state}
                 keyExtractor={(blogPost) => blogPost.title}
