@@ -1,0 +1,19 @@
+{
+  "blogposts": [
+    {
+      "title": "TEST API -Asd saws",
+      "content": "API",
+      "id": 1
+    },
+    {
+      "title": "Newly create API post",
+      "content": "Some content",
+      "id": 2
+    },
+    {
+      "title": "New pos",
+      "content": "Post",
+      "id": 3
+    }
+  ]
+}
